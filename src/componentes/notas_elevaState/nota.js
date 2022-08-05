@@ -1,12 +1,12 @@
-// REPETIR EXERCÍCIO USANDO UM OBJETO NO LUGAR DE VÁRIOS STATES
+// NÃO CONSIGO ALTERAR OS VALORES DOS INPUTS PELO NAVEGADOR
 // elevação de states
 import React from 'react'
 
 export default function Nota(props){
 	return(
-		<div>
-			<label>Informe a {props.num + 1}º nota: </label>
-			<input type='number' max='10' value={props.nota} onChange={(e)=>props.setNota(e.target.value)}/>
-		</div>
+		<>
+			<label>Informe a {props.num}º nota: </label>
+			<input name={'nota' + props.num} type='number' value={props.nota} onChange={(e)=>props.setNotas(e)}/><br/>
+		</>
 	)
 }
