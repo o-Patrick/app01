@@ -22,6 +22,8 @@ export default function Boletim(){
 			case 'nota4':
 				setNotas({'nota1':notas.nota1, 'nota2':notas.nota2, 'nota3':notas.nota3, 'nota4':e.target.value})
 				break
+			default:
+				alert('Elemento não encontrado!')
 		}
 	}
 	// um state para cada nota
