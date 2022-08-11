@@ -1,5 +1,3 @@
-// TÁ DANDO ERRO
-
 import React from "react";
 
 export default class BaseClasse extends React.Component{
@@ -12,17 +10,20 @@ export default class BaseClasse extends React.Component{
 			canal: 'CFB Cursos',
 			curso: 'React',
 			ativo: true,
-			nome: this.props.nomeAluno
+			nome: this.props.nomeAluno // só existe, não recebe nada mesmo
 		} // state
 
-		this.status = this.props.status
+		this.status = this.props.status // só existe, não recebe nada mesmo
 
 		// bindagem
-		let ad = ativarDesativarCurso.bind(this)
+		this.ad = this.ativarDesativarCurso.bind(this)
 	} // constructor
 
 	// função para manipular state
-	ativarDesativarCurso(){this.setState((state) => ({ativo:!state.ativo}))}
+	ativarDesativarCurso(){
+		this.setState((state) => ({ativo:!state.ativo}))
+		console.log(this.state.ativo)
+	}
 
 	render(){
 		return(
@@ -30,6 +31,8 @@ export default class BaseClasse extends React.Component{
 				<h1>Componente de Classe</h1>
 				{/* Chamada da função com bind */}
 				<button onClick={this.ad}>{this.state.ativo ? 'Desativar' : 'Ativar'}</button>
+				{/* Chamada da função sem bind */}
+				<button onClick={()=>this.ativarDesativarCurso()}>{this.state.ativo ? 'Desativar' : 'Ativar'}</button>
 			</>
 		)
 	}
