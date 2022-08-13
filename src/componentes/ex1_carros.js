@@ -57,14 +57,26 @@ const SelectOptions = () => {
 	const opt = []
 	carros.forEach(
 		(carro) => {
-			// o erro só pode ser nessa linha:
-			if(!opt.includes(`<option value=${carro.categoria}>${carro.categoria}</option>`)){
+			// o objetivo era ter um vetor com todos os options já criados, para poder negar o push dos repetidos, mas não deu certo
+			// let optionExiste = document.getElementsByTagName('option')
+
+			// o erro só pode ser por aqui:
+			if(!opt.includes(<option value={carro.categoria}>{carro.categoria}</option>)){
 				opt.push(
 					<option value={carro.categoria}>{carro.categoria}</option>
 				) // push
 			} // if
 		} //arrow func
 	) // forEach
+
+	// o objetivo era fazer a remoção dos options repetidos, mas só deu certo especificando o 1 no splice
+	// for (let i = 0; i <= opt.length; i++){
+	// 	if(opt[i] == opt[i-1]){
+	// 		opt.splice(opt[i-1], 1)
+	// 	}
+	// }
+
+	// retorna o vetor com os options
 	return opt
 } // SelectOptions()
 
