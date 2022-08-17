@@ -180,7 +180,7 @@ export default function Calculadora(){
 			<div style={cssBotoes}>
 				{/* botão AC que limpa a memória */}
 				{Btn('AC', LimparMemoria)}
-				{Btn('(', ()=>AddDigitoTela('('))}
+				{Btn('(', ()=><AddDigitoTela d='('/>)}
 				{Btn(')', ()=>AddDigitoTela(')'))}
 				{Btn('/', ()=>AddDigitoTela('/'))}
 				{Btn('7', ()=>AddDigitoTela('7'))}

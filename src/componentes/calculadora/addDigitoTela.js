@@ -5,11 +5,58 @@
 */ 
 import React from 'react';
 
+// tentativa de passar a func praticamente como está e fazer a chamada no JSX (ver como passar os parâmetros props e d)
 // adiciona os dígitos
 export default function AddDigitoTela(props){
+	const AddDigitoTela = (props) => {
+		// trecho que impede operadores seguidos (menos * por causa de potência)
+		// pega o último dígito na tela
+		const ultDig = valorTela[(valorTela.length)-1];
+		// último dígito é operador
+		let ultDigOpe = false;
+		// dígito atual (parâmetro) é operador
+		let dOpe = false;
+		// testa se o último dígito na tela é operador (incluindo potência)
+		if(ultDig === '+' || ultDig === '-' || valorTela.substring(valorTela.length-2) === '**' || ultDig === '/') ultDigOpe = true;
+		// testa se o dígito atual é operador
+		if(d === '+' || d === '-' || d === '*' || d === '/') dOpe = true;
+		// se o último dígito na tela e o atual forem operadores, não insere
+		if(ultDigOpe && dOpe) return;
+
+		// trecho que impede repetição de . no mesmo número
+		// regex que separa valor tela a cada operador
+		let valTelaSplit = valorTela.split(/(\+|\-|\*|\/)/g)
+		// impede . se o dígito for . e o número atual já tiver .
+		if(d === '.' && valTelaSplit[valTelaSplit.length - 1].includes('.')) return;
+
+		// insere operador
+		if((d === '+' || d === '-' || d === '*' || d === '/') && operado){ // operado é state bool
+			// quando é operado, o valor deste vira true, passando para false para continuar o funcionamento da calculadora:
+			setOperado(false);
+			setValorTela(resultado + d);
+			return; // para a função
+		}
+
+		// insere dígito números e ponto
+		if(operado){
+			setValorTela(d);
+			// operado === false para continuar o funcionamento da calculadora
+			setOperado(false);
+			return; // para a função
+		}
+
+		// mostra toda a conta (?)
+		const valorDigitadoTela = valorTela + d;
+		setValorTela(valorDigitadoTela);
+	} // AddDigitoTela()
+
 	return(
 		<>
-			{
+			{AddDigitoTela(props)}
+
+			
+			{/* nem sei explicar, mas sim */}
+			{/*{						// JOVEM, É SÓ VOLTAR PRA ARROW FUNC E CHAMAR NO JSX (eu acho)
 				(props) => {
 					const AddDigitoTela = (props, d) => {
 					// trecho que impede operadores seguidos (menos * por causa de potência)
@@ -53,7 +100,7 @@ export default function AddDigitoTela(props){
 					props.setValorTela(valorDigitadoTela);
 					}
 				} // arrow func
-			} {/* {} js dentro de jsx */}
+			}*/} {/* {} js dentro de jsx */}
 		</> // jsx
 	) // return
 } // AddDigitoTela()
