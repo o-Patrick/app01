@@ -1,14 +1,20 @@
-/* ainda não funciona, mas tentar:
-		Obs: o parâmetro props.d não existe, porque d era argumento da função, então procurar outra forma de passá-lo
-		1. componente em main_calculadora.js com fechamento </>
-		2. criar elemento em head para index.html
-*/ 
+// O objetivo era componentizar a calculadora, mas não consegui
+
 import React from 'react';
 
 // tentativa de passar a func praticamente como está e fazer a chamada no JSX (ver como passar os parâmetros props e d)
 // adiciona os dígitos
 export default function AddDigitoTela(props){
-	const AddDigitoTela = (props) => {
+	const Btn = props.Btn
+
+	const AddDigitoTela = (props, d) => {
+		// variáveis recebendo os props
+		const valorTela = props.valorTela
+		const setValorTela = props.setValorTela
+		const operado = props.operado
+		const setOperado = props.setOperado
+		const resultado = props.resultado
+
 		// trecho que impede operadores seguidos (menos * por causa de potência)
 		// pega o último dígito na tela
 		const ultDig = valorTela[(valorTela.length)-1];
@@ -51,12 +57,34 @@ export default function AddDigitoTela(props){
 	} // AddDigitoTela()
 
 	return(
-		<>
-			{AddDigitoTela(props)}
+		<section>
+			{/* Botões da calculadora */}
+			<div style={''}>
+				{/* botão AC que limpa a memória */}
+				{/* {Btn('AC', LimparMemoria)} */}
+				{Btn('(', ()=>AddDigitoTela(props, '('))}
+				{Btn(')', ()=>AddDigitoTela(props, ')'))}
+				{Btn('/', ()=>AddDigitoTela(props, '/'))}
+				{Btn('7', ()=>AddDigitoTela(props, '7'))}
+				{Btn('8', ()=>AddDigitoTela(props, '8'))}
+				{Btn('9', ()=>AddDigitoTela(props, '9'))}
+				{Btn('*', ()=>AddDigitoTela(props, '*'))}
+				{Btn('4', ()=>AddDigitoTela(props, '4'))}
+				{Btn('5', ()=>AddDigitoTela(props, '5'))}
+				{Btn('6', ()=>AddDigitoTela(props, '6'))}
+				{Btn('-', ()=>AddDigitoTela(props, '-'))}
+				{Btn('3', ()=>AddDigitoTela(props, '3'))}
+				{Btn('2', ()=>AddDigitoTela(props, '2'))}
+				{Btn('1', ()=>AddDigitoTela(props, '1'))}
+				{Btn('+', ()=>AddDigitoTela(props, '+'))}
+				{Btn('0', ()=>AddDigitoTela(props, '0'))}
+				{Btn('.', ()=>AddDigitoTela(props, '.'))}
+				{/* {Btn('<-', ()=>Operacao('bs'))}
+				{Btn('=', ()=>Operacao('='))} */}
+			</div>
 
-			
-			{/* nem sei explicar, mas sim */}
-			{/*{						// JOVEM, É SÓ VOLTAR PRA ARROW FUNC E CHAMAR NO JSX (eu acho)
+			{/*{
+				// nem sei explicar, mas sim
 				(props) => {
 					const AddDigitoTela = (props, d) => {
 					// trecho que impede operadores seguidos (menos * por causa de potência)
@@ -101,6 +129,6 @@ export default function AddDigitoTela(props){
 					}
 				} // arrow func
 			}*/} {/* {} js dentro de jsx */}
-		</> // jsx
+		</section> // jsx
 	) // return
 } // AddDigitoTela()

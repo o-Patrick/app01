@@ -1,11 +1,12 @@
 /* DESAFIO
 	1. Impedir digitação consecutiva de operadores
 	2. Se um ponto é inserido, ele não pode ser repetido em outro lugar dentro do mesmo número
-	Obs: O SEGUNDO FUNCIONOU AAAAAAAAAAA, usei regex 
+	Obs: O SEGUNDO FUNCIONOU AAAAAAAAAAA, usei regex
+
+	Componentização: não consegui fazer, por isso tudo que funciona se mantém no mesmo arquivo
 */
 
 import React, {useState} from 'react'
-import AddDigitoTela from './addDigitoTela'
 
 export default function Calculadora(){
 	// ESTILOS
@@ -95,8 +96,7 @@ export default function Calculadora(){
 	
 	// FUNÇÕES
 	// adiciona os dígitos
-	/*const AddDigitoTela = (d) => {
-
+	const AddDigitoTela = (d) => {
 		// trecho que impede operadores seguidos (menos * por causa de potência)
 		// pega o último dígito na tela
 		const ultDig = valorTela[(valorTela.length)-1];
@@ -136,7 +136,7 @@ export default function Calculadora(){
 		// mostra toda a conta (?)
 		const valorDigitadoTela = valorTela + d;
 		setValorTela(valorDigitadoTela);
-	} // AddDigitoTela()*/
+	} // AddDigitoTela()
 
 	// limpa tudo
 	const LimparMemoria = () => {
@@ -173,14 +173,13 @@ export default function Calculadora(){
 
 	return(
 		<div style={cssContainer}>
-			<AddDigitoTela valorTela={valorTela} setValorTela={setValorTela} operado={operado} setOperado={setOperado} resultado={resultado}/>
 			<h3>Calculadora Matemática Simples</h3>
 			{Tela(valorTela, resultado)}
 			{/* Botões da calculadora */}
 			<div style={cssBotoes}>
 				{/* botão AC que limpa a memória */}
 				{Btn('AC', LimparMemoria)}
-				{Btn('(', ()=><AddDigitoTela d='('/>)}
+				{Btn('(', ()=>AddDigitoTela('('))}
 				{Btn(')', ()=>AddDigitoTela(')'))}
 				{Btn('/', ()=>AddDigitoTela('/'))}
 				{Btn('7', ()=>AddDigitoTela('7'))}
@@ -200,6 +199,9 @@ export default function Calculadora(){
 				{Btn('<-', ()=>Operacao('bs'))}
 				{Btn('=', ()=>Operacao('='))}
 			</div>
+
+			{/* faz parte da tentativa de componentizar a calculadora: */}
+			{/* <AddDigitoTela valorTela={valorTela} setValorTela={setValorTela} operado={operado} setOperado={setOperado} resultado={resultado} Btn={Btn}/> */}
 		</div>
 	) // return
 } // App
