@@ -3,14 +3,21 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+// usando react router dom
+import {BrowserRouter} from 'react-router-dom';
 
 // a função tick demonstra, por meio de um relógio, como o react apenas renderiza atualizações
 // function tick(){
   const root = ReactDOM.createRoot(document.getElementById('root'));
   root.render(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    // usando react-router-dom
+    <BrowserRouter>
+      <App/>
+    </BrowserRouter>
+    // padrão:
+    // <React.StrictMode>
+    //   <App />
+    // </React.StrictMode>
   );
 // }
 // setInterval(tick, 1000)
